@@ -85,7 +85,7 @@ class DeveloperTicketController extends Controller
         //
         if(Auth::user()->role=='developer'){
             $ticket=Ticket::findOrFail($id);
-            return $ticket;
+            return $ticket;`
         }
      
         abort(403);

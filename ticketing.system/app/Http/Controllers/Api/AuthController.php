@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\UserSuccessRegisterNotification;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -31,6 +33,9 @@ class AuthController extends Controller
             'email' => $user['email']
         ]);
         $user->assignRole($user['role']);
+
+        Notification::route('mail',$user['email'])
+        ->notify(new UserSuccessRegisterNotification($user));
 
         return $this->success([
             'token' => $user->createToken('API Token')->plainTextToken

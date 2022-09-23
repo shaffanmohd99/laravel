@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
@@ -40,6 +41,8 @@ class UserController extends Controller
         //
         User::create($request->all());
     $data=User::all();
+
+    // Notification::route('mail',User::user());
 
     return response()->json($data);
     }

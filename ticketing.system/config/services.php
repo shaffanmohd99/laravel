@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'mailtrap'=>[
+        'account_id'=>env('MAILTRAP_ACCOUNT_ID',"00000"), //the 0000 is default value of not found 
+        'token'=>env('MAILTRAP_TOKEN')
+    ]
 
 ];
