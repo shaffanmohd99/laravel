@@ -19,9 +19,12 @@ class UserTicketController extends Controller
         // dd(Auth::user()->role_id==1);
         // dd(Ticket::all());
         // if(Auth::user()->role_id=="1"){
-            $data=Auth::user()->ticket;
+        //    dd(Ticket::where('assign_user_id',Auth::user()->id)->get());
+            
+            $data=Ticket::where('assign_user_id',Auth::user()->id)->get();
             // return TicketResource::collection($data);
             return response()->json(TicketResource::collection($data));
+            // return response()->json($data);
         // }
         // $data=Auth::user()->tickets;
         // abort(403);

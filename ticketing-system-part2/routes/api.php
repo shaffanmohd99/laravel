@@ -5,6 +5,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LookupController;
+use App\Http\Controllers\UserTicketController;
+use App\Http\Controllers\UserUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,16 +25,22 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-//  user route
+//  admin user route
 Route::apiResource('admin/user',UserController::class)->middleware('auth:sanctum');
+
+//user route 
+Route::apiResource('user',UserUserController::class)->middleware('auth:sanctum');
 
 // AUTH ROUTE
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-// ticket route
+// admin ticket route
 Route::apiResource('admin/ticket',TicketController::class)->middleware('auth:sanctum');
+
+//userticket Route
+Route::apiResource('ticket',UserTicketController::class)->middleware('auth:sanctum');
 
 
 // LOOKUP
